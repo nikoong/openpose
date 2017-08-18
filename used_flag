@@ -1,0 +1,32 @@
+	
+	
+	-image_dir (Process a directory of images. Use `examples/media/` for our
+      default example folder with 20 images.) type: string default: ""
+
+    -write_images (Directory to write rendered frames in `write_images_format`
+
+    -write_pose (Directory to write the people pose data. Desired format on
+      `write_pose_format`.) type: string default: ""
+    
+	-write_pose_format (File extension and format for `write_pose`: json, xml,
+      yaml and yml. Json not available for OpenCV < 3.0, use `write_pose_json`
+      instead.) type: string default: "yml"
+
+
+    -scale_mode (Scaling of the (x,y) coordinates of the final pose data array
+      (op::Datum::pose), i.e. the scale of the (x,y) coordinates that will be
+      saved with the `write_pose` & `write_pose_json` flags. Select `0` to
+      scale it to the original source resolution, `1` to scale it to the net
+      output size (set with `net_resolution`), `2` to scale it to the final
+      output size (set with  `resolution`), `3` to scale it in the range [0,1],
+      and 4 for range [-1,1]. Non related with `num_scales` and `scale_gap`.)
+      type: int32 default: 0
+
+
+
+    --part_to_show: Select the prediction channel to visualize (default: 0). 0 to visualize all the body parts, 1-18 for each body part heat map, 19 for the background heat map, 20 for all the body part heat maps together, 21 for all the PAFs, 22-69 for each body part pair PAF.
+
+
+scrpts:
+./build/examples/openpose/openpose.bin -image_dir /home/nikoong/Algorithm_test/openpose/image_test/part_of_mars/0003 -write_images /home/nikoong/Algorithm_test/openpose/image_test/part_of_mars/rendered_0003/ -write_pose /home/nikoong/Algorithm_test/openpose/image_test/part_of_mars/pose_0003/ -write_pose_format xml -scale_mode 0
+

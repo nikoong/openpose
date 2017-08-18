@@ -65,11 +65,11 @@ echo ""
 
 
 echo "------------------------- Compiling Caffe -------------------------"
-if [[ $ubuntu_le_14 == true ]]; then
-    cp Makefile.config.Ubuntu14.example Makefile.config
-else
-    cp Makefile.config.Ubuntu16.example Makefile.config
-fi
+#if [[ $ubuntu_le_14 == true ]]; then
+#    cp Makefile.config.Ubuntu14.example Makefile.config
+#else
+#    cp Makefile.config.Ubuntu16.example Makefile.config
+#fi
 # make all -j$NUM_CORES
 make all -j$NUM_CORES && make distribute -j$NUM_CORES
 # make test -j$NUM_CORES

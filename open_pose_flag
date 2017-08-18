@@ -1,0 +1,140 @@
+
+ Flags from examples/openpose/openpose.cpp:
+    -alpha_heatmap (Blending factor (range 0-1) between heatmap and original
+      frame. 1 will only show the heatmap, 0 will only show the frame.)
+      type: double default: 0.69999999999999996
+  
+    -alpha_pose (Blending factor (range 0-1) for the body part rendering. 1
+      will show it completely, 0 will hide it.) type: double
+      default: 0.59999999999999998
+    
+	-camera (The camera index for cv::VideoCapture. Integer in the range [0,
+      9].) type: int32 default: 0
+    
+	-camera_resolution (Size of the camera frames to ask for.) type: string
+      default: "1280x720"
+    
+	-disable_blending (If blending is enabled, it will merge the results with
+      the original frame. If disabled, it will only display the results.)
+      type: bool default: false
+    
+	-frame_first (Start on desired frame number.) type: uint64 default: 0
+    
+	-frame_flip (Flip/mirror each frame (e.g. for real time webcam
+      demonstrations).) type: bool default: false
+    
+	-frame_last (Finish on desired frame number. Select -1 to disable this
+      option.) type: uint64 default: 18446744073709551615
+    
+	-frame_rotate (Rotate each frame, 4 possible values: 0, 90, 180, 270.)
+      type: int32 default: 0
+    
+	-frames_repeat (Repeat frames when finished.) type: bool default: false
+    
+	-fullscreen (Run in full-screen mode (press f during runtime to toggle).)
+      type: bool default: false
+    
+	-heatmaps_add_PAFs (Same functionality as `add_heatmaps_parts`, but adding
+      the PAFs.) type: bool default: false
+    
+	-heatmaps_add_bkg (Same functionality as `add_heatmaps_parts`, but adding
+      the heatmap corresponding to background.) type: bool default: false
+    
+	-heatmaps_add_parts (If true, it will add the body part heatmaps to the
+      final op::Datum::poseHeatMaps array (program speed will decrease). Not
+      required for our library, enable it only if you intend to process this
+      information later. If more than one `add_heatmaps_X` flag is enabled, it
+      will place then in sequential memory order: body parts + bkg + PAFs. It
+      will follow the order on POSE_BODY_PART_MAPPING in
+      `include/openpose/pose/poseParameters.hpp`.) type: bool default: false
+    
+	-image_dir (Process a directory of images. Use `examples/media/` for our
+      default example folder with 20 images.) type: string default: ""
+    
+	-logging_level (The logging level. Integer in the range [0, 255]. 0 will
+      output any log() message, while 255 will not output any. Current OpenPose
+      library messages are in the range 0-4: 1 for low priority messages and 4
+      for important ones.) type: int32 default: 3
+    
+	-model_folder (Folder where the pose models (COCO and MPI) are located.)
+      type: string default: "models/"
+    
+	-model_pose (Model to be used (e.g. COCO, MPI, MPI_4_layers).) type: string
+      default: "COCO"
+    
+	-net_resolution (Multiples of 16.) type: string default: "656x368"
+    
+	-no_display (Do not open a display window.) type: bool default: false
+    
+	-no_gui_verbose (Do not write text on output images on GUI (e.g. number of
+      current frame and people). It does not affect the pose rendering.)
+      type: bool default: false
+    
+	-no_render_output (If false, it will fill both `outputData` and
+      `cvOutputData` with the original image + desired part to be shown. If
+      true, it will leave them empty.) type: bool default: false
+    
+	-num_gpu (The number of GPU devices to use.) type: int32 default: 1
+    
+	-num_gpu_start (GPU device start number.) type: int32 default: 0
+    
+	-num_scales (Number of scales to average.) type: int32 default: 1
+    
+	-part_to_show (Part to show from the start.) type: int32 default: 0
+    
+	-process_real_time (Enable to keep the original source frame rate (e.g. for
+      video). If the processing time is too long, it will skip frames. If it is
+      too fast, it will slow it down.) type: bool default: false
+    
+	-resolution (The image resolution (display and output). Use "-1x-1" to
+      force the program to use the default images resolution.) type: string
+      default: "1280x720"
+    
+	-scale_gap (Scale gap between scales. No effect unless num_scales>1.
+      Initial scale is always 1. If you want to change the initial scale, you
+      actually want to multiply the `net_resolution` by your desired initial
+      scale.) type: double default: 0.29999999999999999
+    
+	-scale_mode (Scaling of the (x,y) coordinates of the final pose data array
+      (op::Datum::pose), i.e. the scale of the (x,y) coordinates that will be
+      saved with the `write_pose` & `write_pose_json` flags. Select `0` to
+      scale it to the original source resolution, `1` to scale it to the net
+      output size (set with `net_resolution`), `2` to scale it to the final
+      output size (set with  `resolution`), `3` to scale it in the range [0,1],
+      and 4 for range [-1,1]. Non related with `num_scales` and `scale_gap`.)
+      type: int32 default: 0
+    
+	-video (Use a video file instead of the camera. Use
+      `examples/media/video.avi` for our default example video.) type: string
+      default: ""
+    
+	-write_coco_json (Full file path to write people pose data with *.json COCO
+      validation format.) type: string default: ""
+    
+	-write_heatmaps (Directory to write heatmaps with *.png format. At least 1
+      `add_heatmaps_X` flag must be enabled.) type: string default: ""
+    
+	-write_heatmaps_format (File extension and format for `write_heatmaps`,
+      analogous to `write_images_format`. Recommended `png` or any compressed
+      and lossless format.) type: string default: "png"
+    
+	-write_images (Directory to write rendered frames in `write_images_format`
+      image format.) type: string default: ""
+    
+	-write_images_format (File extension and format for `write_images`, e.g.
+      png, jpg or bmp. Check the OpenCV function cv::imwrite for all compatible
+      extensions.) type: string default: "png"
+    
+	-write_pose (Directory to write the people pose data. Desired format on
+      `write_pose_format`.) type: string default: ""
+    
+	-write_pose_format (File extension and format for `write_pose`: json, xml,
+      yaml and yml. Json not available for OpenCV < 3.0, use `write_pose_json`
+      instead.) type: string default: "yml"
+    
+	-write_pose_json (Directory to write people pose data with *.json format,
+      compatible with any OpenCV version.) type: string default: ""
+    
+	-write_video (Full file path to write rendered frames in motion JPEG video
+      format. It might fail if the final path does not finish in `.avi`. It
+      internally uses cv::VideoWriter.) type: string default: ""

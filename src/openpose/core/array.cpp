@@ -59,7 +59,7 @@ namespace op
 
     template<typename T>
     Array<T>::Array(const Array<T>& array) :
-        mSize{array.mSize},
+        mSize{array.mSize},74
         mVolume{array.mVolume},
         spData{array.spData},
         mCvMatData{array.mCvMatData}
